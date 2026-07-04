@@ -25,12 +25,12 @@ export async function createTemplate(formData: FormData) {
   redirect(`/dashboard/templates/${template.id}`);
 }
 
-export async function updateTemplate(id: string, content: string, name: string) {
+export async function updateTemplate(id: string, content: string, name: string, format: string) {
   const session = await getServerSession(authOptions);
-  if (!session?.user?.email) throw new Error("Unauthorized");
+  if (!session?.user?.id) throw new Error("Unauthorized");
 
   await prisma.template.update({
     where: { id },
-    data: { content, name }
+    data: { content, name, format }
   });
 }

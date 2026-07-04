@@ -16,8 +16,8 @@ export default async function TemplatesPage() {
   });
 
   return (
-    <div className="max-w-5xl mx-auto py-10">
-      <div className="flex justify-between items-center mb-10">
+    <div className="max-w-6xl mx-auto py-10 px-6">
+      <div id="templates-header" className="flex justify-between items-end mb-10">
         <div>
           <h1 className="text-3xl font-bold uppercase tracking-tight mb-2">Templates</h1>
           <p className="text-[#8888a8]">Manage your HTML/Markdown email templates.</p>

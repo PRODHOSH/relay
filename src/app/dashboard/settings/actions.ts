@@ -12,23 +12,29 @@ export async function saveSmtpSettings(formData: FormData) {
     throw new Error("Unauthorized");
   }
 
-  const host = formData.get("smtpHost") as string;
-  const port = parseInt(formData.get("smtpPort") as string);
-  const user = formData.get("smtpUser") as string;
-  const pass = formData.get("smtpPass") as string;
+  const emailProvider = formData.get('emailProvider') as string;
+  const smtpHost = formData.get('smtpHost') as string;
+  const smtpPort = formData.get('smtpPort') ? parseInt(formData.get('smtpPort') as string) : null;
+  const smtpUser = formData.get('smtpUser') as string;
+  const smtpPass = formData.get('smtpPass') as string;
+  const resendKey = formData.get('resendKey') as string;
+  const resendFrom = formData.get('resendFrom') as string;
 
-  const encryptedPass = pass ? encrypt(pass) : undefined;
+  const updateData: any = {
+    emailProvider,
+    smtpHost: smtpHost || null,
+    smtpPort: smtpPort || null,
+    smtpUser: smtpUser || null,
+    resendFrom: resendFrom || null,
+  };
+
+  if (smtpPass) updateData.smtpPass = encrypt(smtpPass);
+  if (resendKey) updateData.resendKey = encrypt(resendKey);
 
   await prisma.user.update({
     where: { email: session.user.email },
-    data: {
-      smtpHost: host || null,
-      smtpPort: port || null,
-      smtpUser: user || null,
-      ...(encryptedPass !== undefined && { smtpPass: encryptedPass }),
-    },
+    data: updateData,
   });
 
   revalidatePath("/dashboard/settings");
-  return { success: true };
 }

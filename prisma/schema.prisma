@@ -45,6 +45,7 @@ model User {
   // Custom SaaS fields
   templates     Template[]
   emailQueue    EmailQueue[]
+  audienceLists AudienceList[]
   
   // SMTP Config (Optional per user)
   emailProvider String? @default("smtp") // "smtp" or "resend"
@@ -53,6 +54,7 @@ model User {
   smtpUser      String?
   smtpPass      String?
   resendKey     String?
+  resendFrom    String?
 }
 
 model VerificationToken {
@@ -67,6 +69,7 @@ model Template {
   id        String   @id @default(cuid())
   name      String
   content   String   @db.Text
+  format    String   @default("html")
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
@@ -83,4 +86,28 @@ model EmailQueue {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   sentAt    DateTime?
+  scheduledFor DateTime?
+}
+
+model AudienceList {
+  id          String    @id @default(cuid())
+  name        String
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contacts    Contact[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Contact {
+  id             String       @id @default(cuid())
+  audienceListId String
+  audienceList   AudienceList @relation(fields: [audienceListId], references: [id], onDelete: Cascade)
+  email          String
+  firstName      String?
+  lastName       String?
+  metadata       String?      @db.Text // JSON string for custom attributes
+  createdAt      DateTime     @default(now())
+  
+  @@unique([audienceListId, email])
 }

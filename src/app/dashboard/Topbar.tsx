@@ -24,6 +24,7 @@ export default function Topbar({ user }: { user?: User }) {
         <button 
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           className="flex items-center gap-3 bg-[#111118] border border-white/20 px-3 py-2 shadow-[2px_2px_0px_rgba(176,48,136,0.8)] hover:shadow-[4px_4px_0px_rgba(176,48,136,0.8)] hover:-translate-y-[2px] transition-all focus:outline-none rounded-none"
+          suppressHydrationWarning
         >
           {user?.image ? (
             <img src={user.image} alt={user.name || "User"} className="w-8 h-8 rounded-none border border-white/20 object-cover" />

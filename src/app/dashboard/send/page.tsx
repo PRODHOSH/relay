@@ -16,13 +16,18 @@ export default async function SendPage() {
     orderBy: { updatedAt: "desc" }
   });
 
+  const lists = await prisma.audienceList.findMany({
+    where: { userId: user.id },
+    orderBy: { name: "asc" }
+  });
+
   return (
     <div className="max-w-4xl mx-auto py-10">
       <div className="mb-10">
         <h1 className="text-3xl font-bold uppercase tracking-tight mb-2">Send Batch</h1>
         <p className="text-[#8888a8]">Queue emails for background sending.</p>
       </div>
-      <SendForm templates={templates} />
+      <SendForm templates={templates} lists={lists} />
     </div>
   );
 }

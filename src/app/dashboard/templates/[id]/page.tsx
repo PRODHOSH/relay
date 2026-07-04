@@ -18,8 +18,13 @@ export default async function TemplatePage({ params }: { params: { id: string } 
   }
 
   return (
-    <div className="h-full">
-      <TemplateEditor id={template.id} initialName={template.name} initialContent={template.content} />
+    <div className="p-6 h-full">
+      <TemplateEditor 
+        id={template.id} 
+        initialName={template.name} 
+        initialContent={template.content}
+        initialFormat={template.format}
+      />
     </div>
   );
 }

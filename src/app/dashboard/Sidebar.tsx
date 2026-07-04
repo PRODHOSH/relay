@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
-import { LayoutDashboard, FileCode2, Send, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, FileCode2, Send, Settings, LogOut, Users } from "lucide-react";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -11,6 +11,7 @@ export default function Sidebar() {
   const navItems = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
     { name: "Templates", href: "/dashboard/templates", icon: FileCode2 },
+    { name: "Audience", href: "/dashboard/audience", icon: Users },
     { name: "Send Batch", href: "/dashboard/send", icon: Send },
     { name: "Settings", href: "/dashboard/settings", icon: Settings },
   ];
@@ -29,6 +30,7 @@ export default function Sidebar() {
           return (
             <Link
               key={item.name}
+              id={`sidebar-${item.name.toLowerCase().replace(' ', '-')}`}
               href={item.href}
               className={`flex items-center gap-3 px-4 py-3 text-sm font-bold uppercase tracking-wider transition-all
                 ${isActive 
@@ -47,7 +49,8 @@ export default function Sidebar() {
       <div className="p-4 border-t border-white/10">
         <button
           onClick={() => signOut({ callbackUrl: '/' })}
-          className="flex items-center gap-3 px-4 py-3 w-full text-left text-sm font-bold uppercase tracking-wider text-[#8888a8] hover:text-white hover:bg-white/5 transition-all"
+          className="flex items-center gap-3 px-4 py-3 w-full text-left text-sm font-bold uppercase tracking-wider text-[#8888a8] hover:bg-[#b04090]/10 hover:text-white transition-colors"
+          suppressHydrationWarning
         >
           <LogOut size={18} />
           Log Out

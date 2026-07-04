@@ -1,27 +1,47 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Editor from "@monaco-editor/react";
 import { updateTemplate } from "../actions";
 import { Save } from "lucide-react";
+import { marked } from "marked";
+import { useRouter } from "next/navigation";
 
 export default function TemplateEditor({ 
   id, 
   initialName, 
-  initialContent 
+  initialContent,
+  initialFormat
 }: { 
   id: string, 
   initialName: string, 
-  initialContent: string 
+  initialContent: string,
+  initialFormat: string
 }) {
   const [content, setContent] = useState(initialContent);
   const [name, setName] = useState(initialName);
+  const [format, setFormat] = useState(initialFormat || "html");
+  const [previewHtml, setPreviewHtml] = useState(initialContent);
   const [saving, setSaving] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const parseContent = async () => {
+      if (format === "markdown") {
+        const html = await marked.parse(content);
+        setPreviewHtml(html);
+      } else {
+        setPreviewHtml(content);
+      }
+    };
+    parseContent();
+  }, [content, format]);
 
   const handleSave = async () => {
     setSaving(true);
-    await updateTemplate(id, content, name);
+    await updateTemplate(id, content, name, format);
     setSaving(false);
+    router.push("/dashboard/templates");
   };
 
   return (
@@ -35,7 +55,7 @@ export default function TemplateEditor({
         <button 
           onClick={handleSave} 
           disabled={saving}
-          className="bg-white text-black px-6 py-2 font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors flex items-center gap-2 border border-black shadow-[4px_4px_0px_rgba(176,48,136,0.8)] rounded-none disabled:opacity-50"
+          className="bg-white text-black px-6 py-2 font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors flex items-center gap-2 border border-black shadow-[4px_4px_0px_rgba(176,48,136,0.8)] hover:shadow-[6px_6px_0px_rgba(176,48,136,0.8)] hover:-translate-y-[2px] rounded-none disabled:opacity-50"
         >
           <Save size={18} /> {saving ? "Saving..." : "Save"}
         </button>
@@ -44,13 +64,22 @@ export default function TemplateEditor({
       <div className="flex-1 flex gap-6 min-h-0">
         {/* Editor */}
         <div className="w-1/2 bg-[#111118] border border-white/10 shadow-[8px_8px_0px_rgba(0,0,0,0.5)] flex flex-col rounded-none">
-          <div className="p-3 border-b border-white/10 bg-[#0a0a0f] text-sm font-bold uppercase text-[#8888a8]">
-            HTML / Markdown
+          <div className="p-3 border-b border-white/10 bg-[#0a0a0f] flex justify-between items-center">
+            <span className="text-sm font-bold uppercase text-[#8888a8]">Editor</span>
+            <select 
+              value={format} 
+              onChange={(e) => setFormat(e.target.value)}
+              className="bg-[#111118] text-white border border-white/20 text-xs p-1 rounded-none outline-none focus:border-[#b04090]"
+            >
+              <option value="html">HTML</option>
+              <option value="markdown">Markdown</option>
+            </select>
           </div>
           <div className="flex-1 p-2">
             <Editor
               height="100%"
-              defaultLanguage="html"
+              defaultLanguage={format === 'markdown' ? 'markdown' : 'html'}
+              language={format === 'markdown' ? 'markdown' : 'html'}
               theme="vs-dark"
               value={content}
               onChange={(value) => setContent(value || "")}
@@ -66,7 +95,7 @@ export default function TemplateEditor({
           </div>
           <div className="flex-1 bg-white overflow-hidden p-4">
             <iframe 
-              srcDoc={content} 
+              srcDoc={previewHtml} 
               className="w-full h-full border-none"
               title="Preview"
               sandbox="allow-same-origin"

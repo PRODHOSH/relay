@@ -3,6 +3,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
+import TourProvider from "@/components/TourProvider";
 
 export default async function DashboardLayout({
   children,
@@ -17,6 +18,7 @@ export default async function DashboardLayout({
 
   return (
     <div className="flex h-screen bg-[#0a0a0f] text-[#f0f0f5] overflow-hidden">
+      <TourProvider />
       <Sidebar />
       <div className="flex-1 flex flex-col min-w-0">
         <Topbar user={session.user} />
