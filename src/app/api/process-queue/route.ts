@@ -35,11 +35,11 @@ export async function GET(req: Request) {
           const decryptedKey = decrypt(email.user.resendKey);
           const resend = new Resend(decryptedKey);
 
-          // For Resend, you MUST use a verified domain.
           const fromEmail = email.user.resendFrom || email.user.email || 'onboarding@resend.dev';
+          const senderName = email.user.senderName || email.user.name || 'Relay Engine';
 
           const { data, error } = await resend.emails.send({
-            from: `Relay Engine <${fromEmail}>`,
+            from: `${senderName} <${fromEmail}>`,
             to: email.toEmail,
             subject: email.subject,
             html: email.content
@@ -65,8 +65,10 @@ export async function GET(req: Request) {
             }
           });
 
+          const senderName = email.user.senderName || email.user.name || 'Relay Engine';
+
           await transporter.sendMail({
-            from: email.user.smtpUser, // For Gmail SMTP, it will always force this address as the sender
+            from: `"${senderName}" <${email.user.smtpUser}>`, // For Gmail SMTP, it will always force this address as the sender, but respects the name
             to: email.toEmail,
             subject: email.subject,
             html: email.content
@@ -85,6 +87,12 @@ export async function GET(req: Request) {
           data: { status: "failed" }
         });
         results.push({ id: email.id, status: "failed", error: err.message });
+      }
+
+      // To avoid Resend's strict 2 requests-per-second free tier rate limit, 
+      // wait 550ms between processing each email.
+      if (email.user.emailProvider === "resend") {
+        await new Promise(resolve => setTimeout(resolve, 550));
       }
     }
 
