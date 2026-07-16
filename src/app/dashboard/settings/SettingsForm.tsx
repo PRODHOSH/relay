@@ -51,6 +51,13 @@ export default function SettingsForm({ user }: { user: any }) {
               <span className="text-xs text-[#8888a8]">Passwords are AES-256 encrypted before saving.</span>
             </div>
           </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-bold uppercase tracking-wider text-[#8888a8]">Sender Name</label>
+              <input suppressHydrationWarning type="text" name="senderName" defaultValue={user?.senderName || ""} placeholder="e.g. Acme Corp" className="bg-[#0a0a0f] border border-white/20 p-3 text-white focus:outline-none focus:border-[#b04090] transition-colors rounded-none" />
+              <span className="text-xs text-[#8888a8]">The name people see in their inbox.</span>
+            </div>
+          </div>
         </div>
       ) : (
         <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-top-2 duration-300">
@@ -65,6 +72,13 @@ export default function SettingsForm({ user }: { user: any }) {
               <label className="text-sm font-bold uppercase tracking-wider text-[#8888a8]">From Email (Sender)</label>
               <input suppressHydrationWarning type="email" name="resendFrom" defaultValue={user?.resendFrom || ""} placeholder="updates@yourdomain.com" className="bg-[#0a0a0f] border border-white/20 p-3 text-white focus:outline-none focus:border-[#b04090] transition-colors rounded-none" />
               <span className="text-xs text-[#8888a8]">The domain MUST be verified on your Resend account.</span>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-bold uppercase tracking-wider text-[#8888a8]">Sender Name</label>
+              <input suppressHydrationWarning type="text" name="senderName" defaultValue={user?.senderName || ""} placeholder="e.g. Acme Corp" className="bg-[#0a0a0f] border border-white/20 p-3 text-white focus:outline-none focus:border-[#b04090] transition-colors rounded-none" />
+              <span className="text-xs text-[#8888a8]">The name people see in their inbox.</span>
             </div>
           </div>
         </div>

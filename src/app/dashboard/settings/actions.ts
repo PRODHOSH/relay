@@ -19,6 +19,7 @@ export async function saveSmtpSettings(formData: FormData) {
   const smtpPass = formData.get('smtpPass') as string;
   const resendKey = formData.get('resendKey') as string;
   const resendFrom = formData.get('resendFrom') as string;
+  const senderName = formData.get('senderName') as string;
 
   const updateData: any = {
     emailProvider,
@@ -26,6 +27,7 @@ export async function saveSmtpSettings(formData: FormData) {
     smtpPort: smtpPort || null,
     smtpUser: smtpUser || null,
     resendFrom: resendFrom || null,
+    senderName: senderName || null,
   };
 
   if (smtpPass) updateData.smtpPass = encrypt(smtpPass);
