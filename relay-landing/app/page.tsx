@@ -196,16 +196,16 @@ function Hero() {
 // --- Trusted By ---
 function TrustedBy() {
   const logos = [
-    { name: "ROBLOX", font: "'Arial Black', sans-serif", weight: 900 },
-    { name: "▲ Vercel", font: "'Inter', sans-serif", weight: 700 },
-    { name: "travelperk+", font: "'Inter', sans-serif", weight: 500 },
-    { name: "CURSOR", font: "'Courier New', monospace", weight: 700 },
-    { name: "Mocha", font: "'Inter', sans-serif", weight: 600 },
-    { name: "Firebase", font: "'Inter', sans-serif", weight: 600 },
-    { name: "TURSO", font: "'Bricolage Grotesque', sans-serif", weight: 800 },
-    { name: "Shopify", font: "'Inter', sans-serif", weight: 700 },
-    { name: "airbnb", font: "'Inter', sans-serif", weight: 600 },
-    { name: "Webflow", font: "'Inter', sans-serif", weight: 400 }
+    { name: "Next.js", font: "'Inter', sans-serif", weight: 700 },
+    { name: "React", font: "'Inter', sans-serif", weight: 600 },
+    { name: "Prisma", font: "'Inter', sans-serif", weight: 700 },
+    { name: "Node.js", font: "'Inter', sans-serif", weight: 600 },
+    { name: "Docker", font: "'Inter', sans-serif", weight: 700 },
+    { name: "Tailwind", font: "'Inter', sans-serif", weight: 500 },
+    { name: "PostgreSQL", font: "'Inter', sans-serif", weight: 600 },
+    { name: "TypeScript", font: "'Inter', sans-serif", weight: 600 },
+    { name: "LaTeX", font: "Georgia, serif", weight: 600 },
+    { name: "AWS SES", font: "'Inter', sans-serif", weight: 600 }
   ];
   
   return (
@@ -219,7 +219,7 @@ function TrustedBy() {
           marginBottom: "48px",
           textAlign: "center"
         }}>
-          Trusted by over 30,000 businesses and 1,500,000 users
+          Built with Modern Open-Source Technologies
         </h3>
         <div style={{ 
           display: "grid", 
@@ -446,59 +446,6 @@ function Comparison() {
   );
 }
 
-// --- Testimonials ---
-function Testimonials() {
-  const reviews = [
-    { name: "Sarah Johnson", role: "Product Designer at Canva", image: "https://i.pravatar.cc/150?img=1", text: "This product completely changed the way I work. The interface is intuitive and the performance is top-notch." },
-    { name: "Aisha Patel", role: "Software Engineer at Swiggy", image: "https://i.pravatar.cc/150?img=5", text: "I've worked with multiple marketing platforms over the years, but none have offered the kind of personalized experience and seamless integration that this one does. It has truly elevated our campaigns and improved our ROI." },
-    { name: "David Chen", role: "Startup Founder", image: "https://i.pravatar.cc/150?img=3", text: "Smooth and delightful experience! Finally an open-source tool that doesn't look like it was built in 1995." },
-    { name: "Michael Ross", role: "Operations Manager", image: "https://i.pravatar.cc/150?img=4", text: "I've used dozens of tools in the past year alone, and this is one of the few I'd actually recommend to other founders. Setting up our own SMTP was flawless and data privacy is guaranteed." },
-    { name: "Elena Rodriguez", role: "Marketing Director", image: "https://i.pravatar.cc/150?img=9", text: "The dynamic PDF generation alone saved us hundreds of hours. Being able to map our CSV data to beautifully formatted LaTeX templates is a game changer." }
-  ];
-
-  return (
-    <section style={{ padding: "120px 24px" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: "64px" }}>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 700, color: "#fff", marginBottom: "16px", letterSpacing: "-1px" }}>
-            Loved by Our Users
-          </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "18px", color: "#a1a1aa" }}>
-            Their experiences speak louder than words
-          </p>
-        </div>
-        
-        <div style={{ columnCount: 3, columnGap: "24px", maxWidth: "1100px", margin: "0 auto" }} className="masonry-grid-lg">
-          {reviews.map((r, i) => (
-            <div key={i} style={{ 
-              background: "#09090b", 
-              padding: "40px", 
-              borderRadius: "24px", 
-              border: "1px solid rgba(255,255,255,0.08)", 
-              marginBottom: "24px", 
-              breakInside: "avoid", 
-              display: "inline-block", 
-              width: "100%",
-              boxShadow: "0 4px 24px rgba(0,0,0,0.2)"
-            }}>
-              <span style={{ fontSize: "48px", color: "rgba(255,255,255,0.2)", fontFamily: "Georgia, serif", lineHeight: 1, display: "block", marginBottom: "16px" }}>“</span>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "17px", color: "#e4e4e7", lineHeight: 1.6, marginBottom: "32px", fontWeight: 500 }}>
-                {r.text}
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                <img src={r.image} alt={r.name} style={{ width: "48px", height: "48px", borderRadius: "50%", objectFit: "cover" }} />
-                <div>
-                  <h4 style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontSize: "16px", fontWeight: 600, color: "#fff", margin: 0, marginBottom: "4px" }}>{r.name}</h4>
-                  <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", color: "#a1a1aa", margin: 0 }}>{r.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // --- FAQ ---
 function FAQ() {
@@ -539,170 +486,6 @@ function FAQ() {
       </div>
     </section>
   );
-}
-
-
-// --- QuickStart / CTA ---
-function QuickStartCTA() {
-  const [copied, setCopied] = useState(false);
-  const command = "git clone https://github.com/PRODHOSH/relay.git && cd relay && npm install && npm run dev";
-
-  const copyCommand = () => {
-    navigator.clipboard.writeText(command);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <section id="get-started" style={{ padding: "100px 24px", position: "relative" }}>
-      <div style={{ maxWidth: "1000px", margin: "0 auto", textAlign: "center" }}>
-        <p style={{
-          fontFamily: "'Bricolage Grotesque', sans-serif",
-          fontSize: "14px",
-          fontWeight: 600,
-          color: "#a1a1aa",
-          letterSpacing: "0.5px",
-          marginBottom: "16px"
-        }}>
-          Fast Local Setup
-        </p>
-
-        <h2 style={{
-          fontFamily: "'Bricolage Grotesque', sans-serif",
-          fontSize: "clamp(32px, 4vw, 48px)",
-          fontWeight: 700,
-          color: "#fff",
-          lineHeight: 1.2,
-          letterSpacing: "-1px",
-          marginBottom: "20px"
-        }}>
-          Up and Running in 3 Minutes
-        </h2>
-
-        <p style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: "16px",
-          color: "#a1a1aa",
-          maxWidth: "600px",
-          margin: "0 auto 48px",
-          lineHeight: 1.6
-        }}>
-          Relay runs completely on your local machine with Docker. Zero SaaS subscriptions, complete control over your lists and delivery.
-        </p>
-
-        {/* Code Terminal Box */}
-        <div style={{
-          background: "#09090b",
-          border: "1px solid rgba(255,255,255,0.12)",
-          borderRadius: "20px",
-          overflow: "hidden",
-          boxShadow: "0 24px 60px rgba(0,0,0,0.6)",
-          textAlign: "left",
-          marginBottom: "40px",
-          position: "relative"
-        }}>
-          {/* Terminal header */}
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "14px 20px",
-            borderBottom: "1px solid rgba(255,255,255,0.08)",
-            background: "rgba(255,255,255,0.02)"
-          }}>
-            <div style={{ display: "flex", gap: "8px" }}>
-              <div style={{ width: "11px", height: "11px", borderRadius: "50%", background: "#ef4444" }} />
-              <div style={{ width: "11px", height: "11px", borderRadius: "50%", background: "#eab308" }} />
-              <div style={{ width: "11px", height: "11px", borderRadius: "50%", background: "#22c55e" }} />
-            </div>
-            <span style={{ fontSize: "12px", color: "#71717a", fontFamily: "monospace" }}>bash — quickstart</span>
-            <button
-              onClick={copyCommand}
-              style={{
-                background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                color: copied ? "#22c55e" : "#a1a1aa",
-                fontSize: "12px",
-                padding: "4px 12px",
-                borderRadius: "6px",
-                cursor: "pointer",
-                transition: "all 0.2s"
-              }}
-            >
-              {copied ? "Copied!" : "Copy"}
-            </button>
-          </div>
-
-          {/* Terminal body */}
-          <div style={{ padding: "24px 28px", fontFamily: "monospace", fontSize: "14px", lineHeight: 1.8 }}>
-            {[
-              { prompt: "$", cmd: "git clone https://github.com/PRODHOSH/relay.git", comment: "" },
-              { prompt: "$", cmd: "cd relay && npm install", comment: "" },
-              { prompt: "$", cmd: "npx prisma db push", comment: "" },
-              { prompt: "$", cmd: "npm run dev", comment: "# relay app opens at localhost:3000" },
-            ].map((line, i) => (
-              <div key={i} style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "6px" }}>
-                <span style={{ color: "#38bdf8", userSelect: "none" }}>{line.prompt}</span>
-                <span style={{ color: "#f4f4f5" }}>{line.cmd}</span>
-                {line.comment && <span style={{ color: "#71717a" }}>{line.comment}</span>}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Action Buttons */}
-        <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-          <a
-            href="https://github.com/PRODHOSH/relay"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "'Bricolage Grotesque', sans-serif",
-              fontSize: "15px",
-              fontWeight: 600,
-              color: "#09090b",
-              background: "#fff",
-              textDecoration: "none",
-              padding: "14px 32px",
-              borderRadius: "100px",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              boxShadow: "0 0 24px rgba(255,255,255,0.2)",
-              transition: "transform 0.2s"
-            }}
-            onMouseEnter={e => e.currentTarget.style.transform = "scale(1.03)"}
-            onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-            <span>Clone on GitHub</span>
-          </a>
-
-          <a
-            href="#features"
-            style={{
-              fontFamily: "'Bricolage Grotesque', sans-serif",
-              fontSize: "15px",
-              fontWeight: 600,
-              color: "#fff",
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.12)",
-              textDecoration: "none",
-              padding: "14px 32px",
-              borderRadius: "100px",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              transition: "background 0.2s"
-            }}
-            onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.1)"}
-            onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.05)"}
-          >
-            <span>Explore Features</span>
-          </a>
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -733,9 +516,7 @@ export default function Home() {
       <TrustedBy />
       <Features />
       <Comparison />
-      <Testimonials />
       <FAQ />
-      <QuickStartCTA />
       <Footer />
       </div>
     </ClickSpark>
