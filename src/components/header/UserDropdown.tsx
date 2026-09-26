@@ -58,6 +58,7 @@ export default function UserDropdown() {
             width={44}
             height={44}
             src={userImage}
+            referrerPolicy="no-referrer"
             alt={userName}
             className="h-full w-full object-cover"
           />

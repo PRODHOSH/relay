@@ -102,7 +102,7 @@ export default async function EcommerceDashboard() {
       
       <div className="flex items-center gap-5 rounded-2xl border border-gray-200 bg-white p-5 md:p-6 dark:border-gray-800 dark:bg-white/3">
         {session?.user?.image ? (
-          <img src={session.user.image} alt={session.user.name || "User"} className="h-16 w-16 rounded-full object-cover shadow-sm" />
+          <img src={session.user.image} alt={session.user.name || "User"} referrerPolicy="no-referrer" className="h-16 w-16 rounded-full object-cover shadow-sm" />
         ) : (
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-100 text-2xl font-bold text-brand-600 dark:bg-brand-500/20 dark:text-brand-400">
             {session?.user?.name ? session.user.name.charAt(0).toUpperCase() : "U"}

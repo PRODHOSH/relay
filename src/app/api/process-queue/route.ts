@@ -76,6 +76,28 @@ export async function GET(req: Request) {
             console.error("LaTeX microservice error:", e);
           }
         }
+
+        // Attach static files from attachmentPath
+        if (email.attachmentPath) {
+          try {
+            const fs = require('fs');
+            const path = require('path');
+            const paths = email.attachmentPath.split(',');
+            for (const p of paths) {
+              if (fs.existsSync(p)) {
+                 const buffer = fs.readFileSync(p);
+                 attachments.push({
+                   filename: path.basename(p),
+                   content: buffer,
+                   contentType: p.endsWith('.pdf') ? 'application/pdf' : 'application/octet-stream'
+                 });
+              }
+            }
+          } catch(e) {
+            console.error("Failed to attach static files:", e);
+          }
+        }
+
         // --- TRACKING INJECTION ---
         const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
         let trackedContent = email.content;

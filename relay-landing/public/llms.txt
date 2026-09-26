@@ -1,0 +1,13 @@
+# Relay
+Relay is a personalized PDF and email delivery platform. It generates LaTeX PDFs from templates and CSV data, and automatically delivers them to an audience by email. It is open-source and runs locally on your machine.
+
+## Key Features
+- Dynamic LaTeX PDF Generation
+- Local-first Processing
+- SMTP / Amazon SES Email Integration
+- Document Workflows and Tracking
+
+## Links
+- GitHub: https://github.com/PRODHOSH/relay
+- Contact: hello@prodhosh.me
+- Portfolio: https://prodhosh.me

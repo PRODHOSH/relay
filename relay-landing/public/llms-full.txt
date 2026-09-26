@@ -1,0 +1,18 @@
+# Relay - Full Documentation
+Relay is a personalized PDF and email delivery platform built for speed and local-first execution. 
+
+## The Problem
+Generating mass personalized documents (like certificates, invoices, or reports) usually requires paid APIs, slow web services, or messy custom scripts. Sending them out securely adds another layer of complexity.
+
+## The Solution: Relay
+Relay uses your local machine's computing power to compile high-quality LaTeX documents dynamically, filling them with data from your CSV files. It then directly interfaces with your email provider (SMTP, AWS SES, Resend) to deliver these documents instantly.
+
+### Architecture
+- **Frontend/Dashboard:** Built with Next.js and TailwindCSS, providing a sleek interface for managing templates, campaigns, and tracking sent emails.
+- **Backend/Engine:** Node.js powered PDF compilation engine using a Dockerized LaTeX environment for reproducible, pixel-perfect document rendering.
+- **Database:** Prisma ORM with SQLite for local, fast state management.
+
+## Contact
+- GitHub: https://github.com/PRODHOSH/relay
+- Contact: hello@prodhosh.me
+- Portfolio: https://prodhosh.me
