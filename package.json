@@ -39,6 +39,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "19.2.4",
+<<<<<<< HEAD
     "react-dropzone": "^20.1.1",
     "react-email-editor": "^1.8.0",
     "react-hot-toast": "^2.6.1",
@@ -47,6 +48,10 @@
     "swiper": "^14.2.0",
     "tailwind-merge": "^3.7.0",
     "temporal-polyfill": "^1.0.5"
+=======
+    "react-email-editor": "^1.8.0",
+    "resend": "^6.17.1"
+>>>>>>> 0c0abb35d74b2cb0c3346b4450497561f67564a8
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

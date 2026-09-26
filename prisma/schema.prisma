@@ -68,6 +68,7 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+<<<<<<< HEAD
 model Project {
   id        String   @id @default(cuid())
   name      String
@@ -81,19 +82,27 @@ model Project {
   emails    EmailQueue[]
 }
 
+=======
+>>>>>>> 0c0abb35d74b2cb0c3346b4450497561f67564a8
 model Template {
   id         String   @id @default(cuid())
   name       String
   content    String   @db.Text
   format     String   @default("html")
   designJson String?  @db.Text
+<<<<<<< HEAD
   variables  String?  @db.Text // JSON array of variable names e.g. ["name","email","role"]
+=======
+>>>>>>> 0c0abb35d74b2cb0c3346b4450497561f67564a8
   userId     String
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+<<<<<<< HEAD
 
   emailQueues EmailQueue[] @relation("AttachmentTemplate")
+=======
+>>>>>>> 0c0abb35d74b2cb0c3346b4450497561f67564a8
 }
 
 model EmailQueue {
