@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # The main Next.js Application (Dashboard & APIs)
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - RESEND_API_KEY=${RESEND_API_KEY}
+    command: npm start
+    depends_on:
+      - db
+      - latex
+
+  # The Background Email Dispatcher Worker
+  worker:
+    build: .
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - RESEND_API_KEY=${RESEND_API_KEY}
+    command: node worker.js
+    depends_on:
+      - db
+      - latex
+
+  # The isolated LaTeX Compilation Microservice
+  latex:
+    build: ./latex-service
+    ports:
+      - "5050:5050"
+    volumes:
+      - ./generated-pdfs:/usr/src/app/generated-pdfs
+
+  # PostgreSQL Database (Optional)
+  # You can remove this block if you are using Neon.tech or an external DB.
+  db:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=relay_user
+      - POSTGRES_PASSWORD=relay_pass
+      - POSTGRES_DB=relaydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

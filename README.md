@@ -92,29 +92,23 @@ erDiagram
 
 ## Getting Started
 
-### 1. Install Dependencies
-Run the standard NPM install from the root directory:
-```bash
-npm install
-```
+### The "One-Click" Docker Method (Recommended)
+You can run the entire platform—Frontend, Background Worker, LaTeX Engine, and PostgreSQL Database—using a single command.
 
-### 2. Start the PDF Engine
-Relay uses an isolated Docker microservice to compile LaTeX securely and fast:
+1. Rename `.env.example` to `.env` and fill in your keys (or leave default for local Postgres).
+2. Run Docker Compose from the root:
 ```bash
-cd latex-service
-docker-compose up -d
+docker-compose up -d --build
 ```
-*(Alternatively, run `npm install && node server.js` inside the `latex-service` folder if you have pdflatex natively).*
+This spins up all 4 microservices instantly. The dashboard will be available at `http://localhost:3000`.
 
-### 3. Boot Up Relay
-Start the Next.js frontend and the background mail worker:
-```bash
-npm run dev
-```
-In a new terminal window, start the dispatcher:
-```bash
-node worker.js
-```
+*(Note: If you prefer to use Neon.tech or a cloud Postgres provider, just update `DATABASE_URL` in `.env` and you can optionally comment out the `db` service in `docker-compose.yml`).*
+
+### The Manual Dev Method
+If you want to run the stack natively without full Docker:
+1. Start the LaTeX compiler: `cd latex-service && docker-compose up -d`
+2. Run the Web App: `npm install && npm run dev`
+3. Run the Worker: `node worker.js` (in a separate terminal)
 
 ### 4. Configuration
 Create a `.env.local` file with your credentials:
