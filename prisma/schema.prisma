@@ -43,9 +43,11 @@ model User {
   sessions      Session[]
   
   // Custom SaaS fields
+  projects      Project[]
   templates     Template[]
   emailQueue    EmailQueue[]
   audienceLists AudienceList[]
+  systemLogs    SystemLog[]
   
   // SMTP Config (Optional per user)
   emailProvider String? @default("smtp") // "smtp" or "resend"
@@ -66,16 +68,32 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+model Project {
+  id        String   @id @default(cuid())
+  name      String
+  type      String   // "dynamic-pdf", "static-pdf", "html-email"
+  status    String   @default("Draft") // "Active", "Completed", "Draft"
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  emails    EmailQueue[]
+}
+
 model Template {
   id         String   @id @default(cuid())
   name       String
   content    String   @db.Text
   format     String   @default("html")
   designJson String?  @db.Text
+  variables  String?  @db.Text // JSON array of variable names e.g. ["name","email","role"]
   userId     String
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  emailQueues EmailQueue[] @relation("AttachmentTemplate")
 }
 
 model EmailQueue {
@@ -89,6 +107,16 @@ model EmailQueue {
   createdAt DateTime @default(now())
   sentAt    DateTime?
   scheduledFor DateTime?
+
+  attachmentTemplateId String?
+  attachmentTemplate   Template? @relation("AttachmentTemplate", fields: [attachmentTemplateId], references: [id], onDelete: SetNull)
+  attachmentPath       String?   // Path to locally generated PDF attachment
+  
+  // Tracking & Analytics
+  projectId          String?
+  project            Project?  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  openedAt           DateTime?
+  clickedAt          DateTime?
 }
 
 model AudienceList {
@@ -112,4 +140,13 @@ model Contact {
   createdAt      DateTime     @default(now())
   
   @@unique([audienceListId, email])
+}
+
+model SystemLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  action    String
+  details   String?  @db.Text
+  createdAt DateTime @default(now())
 }

@@ -195,15 +195,40 @@ export default function Hero() {
         </div>
 
         <div className="hero-content">
+          <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-gray-200/50 bg-gray-50/50 px-4 py-1.5 text-sm text-gray-600 backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-gray-300">
+            <span className="flex h-2 w-2 rounded-full bg-brand-500 animate-pulse"></span>
+            <strong>Relay 2.5 Released</strong> <span className="text-gray-400">|</span> Real-time SMTP telemetry & dynamic pass issuance
+          </div>
           <h1 className="hero-heading">
-            The simple way
-            <strong>to drop-in email templates</strong>
+            The Email Engine
+            <strong>Built for Precision & Scale</strong>
           </h1>
-          <p className="hero-sub">
-            Fully managed email rendering and queueing<br/>
-            platform for teams of all industries.
+          <p className="hero-sub max-w-2xl mx-auto">
+            Dispatch high-deliverability transactional campaigns via your own SMTP servers. Validate recipient lists in real-time, generate tamper-proof QR tickets, and monitor delivery telemetry—with zero vendor lock-in.
           </p>
-          <a href="#" className="btn-cta" onClick={(e) => { e.preventDefault(); setIsSignInModalOpen(true); }}>Get Started</a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+            <a href="#" className="btn-cta" onClick={(e) => { e.preventDefault(); setIsSignInModalOpen(true); }}>Start Sending Free</a>
+            <a href="/docs" className="text-gray-600 hover:text-gray-900 font-medium px-4 py-2 transition-colors dark:text-gray-300 dark:hover:text-white">View API Docs</a>
+          </div>
+          
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center border-t border-gray-200/50 pt-12 dark:border-white/10">
+            <div>
+              <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">99.98%</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">Average Deliverability</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">&lt; 180ms</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">Queue Dispatch Latency</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">100%</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">Data Sovereignty & Privacy</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-brand-500 mb-2">$0</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">Per-Email Vendor Markups</div>
+            </div>
+          </div>
         </div>
       </section>
 

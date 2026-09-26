@@ -6,7 +6,10 @@ declare global {
   var prisma: PrismaClient | undefined;
 }
 
-const connectionString = `${process.env.DATABASE_URL}`;
+let connectionString = `${process.env.DATABASE_URL}`;
+if (connectionString.includes('sslmode=require') && !connectionString.includes('uselibpqcompat')) {
+  connectionString = connectionString.replace('sslmode=require', 'sslmode=require&uselibpqcompat=true');
+}
 const pool = new Pool({ connectionString });
 const adapter = new PrismaPg(pool);
 
