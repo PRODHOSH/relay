@@ -70,7 +70,7 @@ function Navbar() {
       `}</style>
 
       {/* Button */}
-      <Button text="Get Started" href="http://localhost:3000" />
+      <Button text="Get Started" href="https://github.com/PRODHOSH/relay" />
     </nav>
   );
 }
@@ -132,7 +132,7 @@ function Hero() {
         </p>
         
         <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }} className="animate-fade-in-up delay-300">
-          <Button text="Get Started" href="http://localhost:3000" />
+          <Button text="Get Started" href="https://github.com/PRODHOSH/relay" />
           
           <a href="https://github.com/PRODHOSH/relay" target="_blank" rel="noopener noreferrer" style={{
             fontFamily: "'Bricolage Grotesque', sans-serif",
