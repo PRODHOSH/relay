@@ -486,7 +486,6 @@ function FAQ() {
       </div>
     </section>
   );
-  );
 }
 
 export default function Home() {
