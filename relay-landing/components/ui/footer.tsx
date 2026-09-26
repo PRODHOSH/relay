@@ -32,7 +32,7 @@ export function Footer() {
       <div style={{ position: "relative", zIndex: 10, maxWidth: "1200px", margin: "0 auto", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "48px" }}>
         
         {/* Left Side */}
-        <div style={{ flex: "1 1 400px" }}>
+        <div style={{ flex: "0 1 400px" }}>
           <Image 
             src="/relay-logo-text.png" 
             alt="Relay Logo" 
@@ -68,21 +68,21 @@ export function Footer() {
         </div>
 
         {/* Right Side */}
-        <div style={{ flex: "1 1 300px", display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+        <div style={{ flex: "0 1 350px", display: "flex", flexDirection: "column", alignItems: "flex-end", textAlign: "right" }}>
           <p style={{ fontSize: "12px", textTransform: "uppercase", fontWeight: 600, color: "#a1a1aa", marginBottom: "16px", fontFamily: "'Bricolage Grotesque', sans-serif" }}>Maker</p>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px", padding: "12px", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "16px", marginBottom: "16px" }}>
-            <Image src="https://github.com/prodhosh.png" alt="Prodhosh" width={40} height={40} style={{ borderRadius: "50%" }} />
-            <div>
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", padding: "12px 16px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px", marginBottom: "20px", transition: "all 0.3s cursor-pointer", cursor: "pointer" }} onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.06)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; e.currentTarget.style.transform = "translateY(-2px)"; }} onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)"; e.currentTarget.style.transform = "translateY(0)"; }}>
+            <div style={{ textAlign: "right" }}>
               <p style={{ color: "#fff", fontSize: "14px", fontWeight: 600, margin: 0, fontFamily: "'Bricolage Grotesque', sans-serif" }}>Prodhosh</p>
               <p style={{ color: "#a1a1aa", fontSize: "12px", margin: 0, fontFamily: "'Inter', sans-serif" }}>Creator of Relay</p>
             </div>
+            <Image src="https://github.com/prodhosh.png" alt="Prodhosh" width={44} height={44} style={{ borderRadius: "50%", border: "2px solid rgba(255,255,255,0.1)" }} />
           </div>
-          <div style={{ color: "#a1a1aa", fontSize: "13px", fontFamily: "'Inter', sans-serif", marginBottom: "16px", display: "flex", flexDirection: "column", gap: "8px" }}>
-            <span>Email: <a href="mailto:hello@prodhosh.me" style={{ color: "#fff", textDecoration: "underline" }}>hello@prodhosh.me</a></span>
-            <span>Portfolio: <a href="https://prodhosh.me" target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "underline" }}>prodhosh.me</a></span>
+          <div style={{ color: "#a1a1aa", fontSize: "13px", fontFamily: "'Inter', sans-serif", marginBottom: "16px", display: "flex", flexDirection: "column", gap: "8px", alignItems: "flex-end" }}>
+            <span>Email: <a href="mailto:hello@prodhosh.me" style={{ color: "#fff", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "#38bdf8"} onMouseLeave={e => e.currentTarget.style.color = "#fff"}>hello@prodhosh.me</a></span>
+            <span>Portfolio: <a href="https://prodhosh.me" target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "#38bdf8"} onMouseLeave={e => e.currentTarget.style.color = "#fff"}>prodhosh.me</a></span>
           </div>
-          <div style={{ display: "flex", gap: "12px" }}>
-            <a href="https://github.com/prodhosh" target="_blank" rel="noopener noreferrer" style={{ color: "#a1a1aa" }}><Globe size={20} /></a>
+          <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end" }}>
+            <a href="https://github.com/prodhosh" target="_blank" rel="noopener noreferrer" style={{ color: "#a1a1aa", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#a1a1aa"}><Globe size={20} /></a>
           </div>
         </div>
 
